@@ -12,5 +12,6 @@ const sequelize = new Sequelize(
         benchmark: true
     }
  );
+console.log(sequelize);
 
 export default sequelize;
