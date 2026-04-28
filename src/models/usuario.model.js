@@ -21,4 +21,8 @@ export const User = sequelize.define("User", {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  ativo: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: true,
+  },
 });
