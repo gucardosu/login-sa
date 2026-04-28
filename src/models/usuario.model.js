@@ -1,5 +1,4 @@
 import sequelize from "../config/database.js";
-import Sequelize from "../config/database.js";
 import { DataTypes } from "sequelize";
 
 export const User = sequelize.define("User", {
@@ -24,5 +23,5 @@ export const User = sequelize.define("User", {
   ativo: {
     type: DataTypes.BOOLEAN,
     defaultValue: true,
-  },
+  }
 });
