@@ -1,10 +1,13 @@
 import 'dotenv/config';
 import express from 'express';
-import sequelize from './src/config/database.js';
-import './src/models/usuario.model.js';
+import sequelize from './config/database.js';
+import './models/usuario.model.js';
+import authRouter from './routes/auth.routes.js'
 
 const app = express();
 app.use(express.json());
+
+app.use('/auth', authRouter)
 
 sequelize.sync({ alter: true }).then(() => {
   app.listen(process.env.PORT, () =>
