@@ -18,3 +18,29 @@ export async function getPerfil(req, res) {
     return res.status(500).json({ error: "Erro interno no servidor" });
   }
 }
+
+export async function updatePerfil(req, res) {
+  try {
+    const { nome, email, senha } = req.body;
+
+    const usuario = await User.findByPk(req.usuario.id);
+
+    if (!usuario) {
+      return res.status(404).json({ error: "Usuário não encontrado" });
+    }
+
+    if (nome) usuario.nome = nome;
+    if (email) usuario.email = email;
+    if (senha) usuario.senha = await bcrypt.hash(senha, 10);
+
+    await usuario.save();
+
+    const userResponse = usuario.toJSON();
+    delete userResponse.senha;
+
+    return res.status(200).json(userResponse);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: "Erro interno no servidor" });
+  }
+}
