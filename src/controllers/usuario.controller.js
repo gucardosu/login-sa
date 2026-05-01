@@ -44,3 +44,21 @@ export async function updatePerfil(req, res) {
     return res.status(500).json({ error: "Erro interno no servidor" });
   }
 }
+
+export async function deleteAccount(req, res) {
+  try {
+    const usuario = await User.findByPk(req.usuario.id);
+
+    if (!usuario) {
+      return res.status(404).json({ error: "Usuário não encontrado" });
+    }
+
+    usuario.ativo = false;
+    await usuario.save();
+
+    return res.status(204).send();
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: "Erro interno no servidor" });
+  }
+}
