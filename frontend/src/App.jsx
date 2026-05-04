@@ -32,7 +32,7 @@ export default function App() {
         </div>
       ) : (
         <div style={{ position: "relative" }}>
-          <Cadastro />
+          <Cadastro aoClicarVoltar={irParaLogin} />
           <button
             onClick={irParaLogin}
             style={{

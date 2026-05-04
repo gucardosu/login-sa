@@ -6,11 +6,13 @@ export default function Button({
   isLoading,
   disabled,
   variant = "primary",
+  type = "button",
 }) {
   const estaDesabilitado = disabled || isLoading;
 
   return (
     <button
+      type={type}
       onClick={onClick}
       disabled={estaDesabilitado}
       className={`btn btn-${variant}`}

@@ -4,8 +4,7 @@ import Button from "../../components/Button/Button";
 import logoProjeto from "../../assets/logo-web.png";
 import "../Login/Login.css";
 
-export default function Cadastro() {
-  // === ESTADOS ===
+export default function Cadastro({ aoClicarVoltar }) {
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
@@ -81,7 +80,7 @@ export default function Cadastro() {
           />
 
           <div style={{ display: "flex", gap: "16px", marginTop: "32px" }}>
-            <Button type="button" variant="secondary">
+            <Button type="button" variant="secondary" onClick={aoClicarVoltar}>
               Voltar
             </Button>
 
