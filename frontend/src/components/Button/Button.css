@@ -1,0 +1,40 @@
+.btn {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 50px; 
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-primary {
+  background-color: #F2994A;
+  color: #ffffff;
+  border: none;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: #E08538;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: #1E3A5F;
+  border: 2px solid #1E3A5F;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background-color: #F0F4F8;
+}
+
+.btn:disabled {
+  background-color: #cccccc;
+  color: #666666;
+  border: none;
+  cursor: not-allowed;
+}
