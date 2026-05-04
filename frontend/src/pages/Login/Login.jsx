@@ -1,8 +1,8 @@
 import { useState } from "react";
-import Input from "../components/Input/Input";
-import Button from "../components/Button/Button";
+import Input from "../../components/Input/Input";
+import Button from "../../components/Button/Button";
 import "./Login.css";
-import Logo from '../assets/sketch.png'
+import Logo from '../../assets/sketch.png'
 
 export default function Login() {
   const [email, setEmail] = useState("");
