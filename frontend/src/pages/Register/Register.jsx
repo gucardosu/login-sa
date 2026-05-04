@@ -13,7 +13,7 @@ export default function Cadastro({ aoClicarVoltar }) {
   const [erroSenha, setErroSenha] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleCadastro = (e) => {
+  const handleCadastro = async (e) => {
     e.preventDefault();
 
     if (senha !== confirmaSenha) {
@@ -25,12 +25,29 @@ export default function Cadastro({ aoClicarVoltar }) {
     setErroSenha(false);
     setIsLoading(true);
 
-    setTimeout(() => {
-      const payload = { nome, email, senha };
-      console.log("JSON do Cadastro:", JSON.stringify(payload));
+    const payload = { nome, email, senha };
+
+    try {
+      const resposta = await fetch("http://localhost:3000/auth/cadastro", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      const dados = await resposta.json();
+
+      if (resposta.ok) {
+        alert("Usuário cadastrado com sucesso!");
+        console.log("Resposta da API:", dados);
+      } else {
+        alert(`Erro ao cadastrar: ${dados.message || "Tente novamente"}`);
+      }
+    } catch (erro) {
+      console.error("Erro na conexão:", erro);
+      alert("Servidor offline. Verifique se o Node está rodando.");
+    } finally {
       setIsLoading(false);
-      alert("Cadastro simulado! Veja o console (F12).");
-    }, 2000);
+    }
   };
 
   return (
