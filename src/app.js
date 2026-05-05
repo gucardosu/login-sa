@@ -5,8 +5,11 @@ import sequelize from "./config/database.js";
 import "./models/usuario.model.js";
 import authRouter from "./routes/auth.routes.js";
 import usuarioRouter from "./routes/usuario.routes.js";
+import helmet from "helmet";
+import { limiteGlobal } from "./config/rateLimit.config.js";
 
 const app = express();
+app.use(helmet());
 app.use(
   cors({
     origin: "*",
@@ -14,6 +17,8 @@ app.use(
     allowedHeaders: ["Content-Type", "Authorization"],
   }),
 );
+
+app.use(limiteGlobal);
 app.use(express.json());
 
 app.use("/auth", authRouter);
