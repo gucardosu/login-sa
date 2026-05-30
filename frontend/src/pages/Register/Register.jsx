@@ -1,10 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Input from "../../components/Input/Input";
 import Button from "../../components/Button/Button";
 import logoProjeto from "../../assets/logo-web.png";
 import "../Login/Login.css";
 
-export default function Cadastro({ aoClicarVoltar }) {
+export default function Cadastro() {
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
@@ -12,6 +13,8 @@ export default function Cadastro({ aoClicarVoltar }) {
 
   const [erroSenha, setErroSenha] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleCadastro = async (e) => {
     e.preventDefault();
@@ -39,6 +42,8 @@ export default function Cadastro({ aoClicarVoltar }) {
       if (resposta.ok) {
         alert("Usuário cadastrado com sucesso!");
         console.log("Resposta da API:", dados);
+
+        navigate("/login");
       } else {
         alert(`Erro ao cadastrar: ${dados.message || "Tente novamente"}`);
       }
@@ -97,7 +102,11 @@ export default function Cadastro({ aoClicarVoltar }) {
           />
 
           <div style={{ display: "flex", gap: "16px", marginTop: "32px" }}>
-            <Button type="button" variant="secondary" onClick={aoClicarVoltar}>
+            <Button
+              type="button"
+              variant="secondary"
+              onClick={() => navigate("/login")}
+            >
               Voltar
             </Button>
 

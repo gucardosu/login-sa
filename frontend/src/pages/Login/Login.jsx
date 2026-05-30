@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Input from "../../components/Input/Input";
 import Button from "../../components/Button/Button";
 import "./Login.css";
@@ -8,6 +9,8 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   const formInvalido = email === "" || senha === "";
 
@@ -29,6 +32,8 @@ export default function Login() {
       if (resposta.ok) {
         alert("Login efetuado com sucesso!");
         console.log("Token ou dados recebidos:", dados);
+
+        navigate("/home");
       } else {
         alert(`Erro: ${dados.message || "Acesso negado"}`);
       }
@@ -76,6 +81,23 @@ export default function Login() {
             </Button>
           </div>
         </form>
+
+        <div style={{ marginTop: "24px", textAlign: "center" }}>
+          <button
+            type="button"
+            onClick={() => navigate("/cadastro")}
+            style={{
+              background: "none",
+              border: "none",
+              color: "#F2994A",
+              cursor: "pointer",
+              fontWeight: "bold",
+              fontSize: "14px",
+            }}
+          >
+            Não tem conta? Criar conta
+          </button>
+        </div>
       </div>
     </div>
   );
