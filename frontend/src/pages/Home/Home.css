@@ -17,3 +17,40 @@
   flex: 1;
   overflow-y: auto; 
 }
+.dashboard-grid {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.area-aulas {
+  flex: 3;
+}
+
+.area-ia {
+  flex: 2;
+}
+
+.aula-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 2px solid #EAEAEA;
+}
+
+.aula-item:last-child {
+  border-bottom: none;
+}
+
+.aula-info h4 {
+  margin: 0 0 4px 0;
+  color: #15325A;
+  font-size: 16px;
+}
+
+.aula-info p {
+  margin: 0;
+  color: #6B7280;
+  font-size: 14px;
+}

@@ -1,0 +1,15 @@
+.card-container {
+  background-color: #F8F9FA; 
+  border: 1px solid #3B82F6; 
+  border-radius: 12px;
+  padding: 24px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.card-title {
+  color: #15325A;
+  font-size: 20px;
+  margin-top: 0;
+  margin-bottom: 24px;
+}
