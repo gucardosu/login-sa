@@ -5,7 +5,8 @@ export default function Header() {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    alert("Deslogando do sistema...");
+    localStorage.removeItem("tokenMentorIA");
+
     navigate("/login");
   };
 

@@ -33,6 +33,8 @@ export default function Login() {
         alert("Login efetuado com sucesso!");
         console.log("Token ou dados recebidos:", dados);
 
+        localStorage.setItem("tokenMentorIA", "usuario_autenticado");
+
         navigate("/home");
       } else {
         alert(`Erro: ${dados.message || "Acesso negado"}`);
