@@ -1,11 +1,19 @@
-import Button from '../Button/Button';
+import { useNavigate } from "react-router-dom";
+import "./Header.css";
 
 export default function Header() {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    alert("Deslogando do sistema...");
+    navigate("/login");
+  };
+
   return (
-    <>
-      <Header>
-        <Button/>
-      </Header>
-    </>
+    <header className="header-container">
+      <button className="btn-sair" onClick={handleLogout}>
+        Sair
+      </button>
+    </header>
   );
 }
