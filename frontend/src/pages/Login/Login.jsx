@@ -9,6 +9,7 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [erroApi, setErroApi] = useState("");
 
   const navigate = useNavigate();
 
@@ -17,6 +18,7 @@ export default function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     setIsLoading(true);
+    setErroApi("");
 
     const payload = { email, senha };
 
@@ -30,18 +32,18 @@ export default function Login() {
       const dados = await resposta.json();
 
       if (resposta.ok) {
-        alert("Login efetuado com sucesso!");
-        console.log("Token ou dados recebidos:", dados);
-
         localStorage.setItem("tokenMentorIA", "usuario_autenticado");
+
+        await new Promise((resolve) => setTimeout(resolve, 1500));
 
         navigate("/home");
       } else {
-        alert(`Erro: ${dados.message || "Acesso negado"}`);
+        setErroApi(`Erro: ${dados.message || "E-mail ou senha incorretos."}`);
       }
+      
     } catch (erro) {
       console.error("Erro na conexão:", erro);
-      alert("Servidor offline. Verifique se o Node está rodando.");
+      setErroApi("Servidor offline. Verifique se o Node está rodando.");
     } finally {
       setIsLoading(false);
     }
@@ -54,6 +56,8 @@ export default function Login() {
         <h2 className="login-title">
           Faça seu login para entrar na plataforma
         </h2>
+
+        {erroApi && <div className="mensagem-erro">{erroApi}</div>}
 
         <form onSubmit={handleLogin}>
           <Input

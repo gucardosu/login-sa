@@ -31,3 +31,14 @@
   margin: 0 auto 24px auto;
   display: block;
 }
+
+.mensagem-erro {
+  color: #DC2626; 
+  background-color: #FEE2E2;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 16px;
+}

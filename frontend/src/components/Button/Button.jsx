@@ -17,7 +17,7 @@ export default function Button({
       disabled={estaDesabilitado}
       className={`btn btn-${variant}`}
     >
-      {isLoading ? "Carregando..." : children}
+      {isLoading ? <div className="spinner"></div> : children}
     </button>
   );
 }

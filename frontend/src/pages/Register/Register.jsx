@@ -13,15 +13,17 @@ export default function Cadastro() {
 
   const [erroSenha, setErroSenha] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [erroApi, setErroApi] = useState("");
 
   const navigate = useNavigate();
 
   const handleCadastro = async (e) => {
     e.preventDefault();
+    setErroApi("");
 
     if (senha !== confirmaSenha) {
       setErroSenha(true);
-      alert("As senhas não coincidem!");
+      setErroApi("As senhas não coincidem!");
       return;
     }
 
@@ -40,16 +42,13 @@ export default function Cadastro() {
       const dados = await resposta.json();
 
       if (resposta.ok) {
-        alert("Usuário cadastrado com sucesso!");
-        console.log("Resposta da API:", dados);
-
         navigate("/login");
       } else {
-        alert(`Erro ao cadastrar: ${dados.message || "Tente novamente"}`);
+        setErroApi(`Erro ao cadastrar: ${dados.message || "Tente novamente"}`);
       }
     } catch (erro) {
       console.error("Erro na conexão:", erro);
-      alert("Servidor offline. Verifique se o Node está rodando.");
+      setErroApi("Servidor offline. Verifique se o Node está rodando.");
     } finally {
       setIsLoading(false);
     }
@@ -62,6 +61,8 @@ export default function Cadastro() {
         <h2 className="login-title">
           Faça seu cadastro para utilizar a plataforma
         </h2>
+
+        {erroApi && <div className="mensagem-erro">{erroApi}</div>}
 
         <form onSubmit={handleCadastro}>
           <Input
@@ -97,6 +98,7 @@ export default function Cadastro() {
             onChange={(e) => {
               setConfirmaSenha(e.target.value);
               setErroSenha(false);
+              setErroApi("");
             }}
             hasError={erroSenha}
           />
